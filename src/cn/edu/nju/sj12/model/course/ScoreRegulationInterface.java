@@ -1,4 +1,4 @@
-package cn.edu.nju.sj12.logic.course;
+package cn.edu.nju.sj12.model.course;
 
 import cn.edu.nju.sj12.vo.TranscriptVO;
 

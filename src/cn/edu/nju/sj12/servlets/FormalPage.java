@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Session;
 
-import cn.edu.nju.sj12.logic.user.UserRegulationInterface;
-import cn.edu.nju.sj12.logic.user.UserRegulationXmlImp;
+import cn.edu.nju.sj12.model.user.UserRegulationInterface;
+import cn.edu.nju.sj12.model.user.UserRegulationXmlImp;
 import cn.edu.nju.sj12.vo.UserVO;
 
 

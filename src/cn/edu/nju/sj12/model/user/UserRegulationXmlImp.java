@@ -1,4 +1,4 @@
-package cn.edu.nju.sj12.logic.user;
+package cn.edu.nju.sj12.model.user;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -6,8 +6,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cn.edu.nju.sj12.enums.Gender;
-import cn.edu.nju.sj12.helpers.XmlHelpr;
-import cn.edu.nju.sj12.logic.exceptions.FileNotOpenException;
+import cn.edu.nju.sj12.model.exceptions.FileNotOpenException;
+import cn.edu.nju.sj12.model.helpers.XmlHelpr;
 import cn.edu.nju.sj12.vo.UserVO;
 
 public class UserRegulationXmlImp implements UserRegulationInterface{

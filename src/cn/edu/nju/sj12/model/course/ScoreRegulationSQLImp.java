@@ -1,10 +1,10 @@
-package cn.edu.nju.sj12.logic.course;
+package cn.edu.nju.sj12.model.course;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import cn.edu.nju.sj12.helpers.MySQLHelper;
+import cn.edu.nju.sj12.model.helpers.MySQLHelper;
 import cn.edu.nju.sj12.vo.TranscriptVO;
 
 public class ScoreRegulationSQLImp implements ScoreRegulationInterface{

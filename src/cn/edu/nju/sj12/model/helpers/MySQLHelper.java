@@ -1,4 +1,4 @@
-package cn.edu.nju.sj12.helpers;
+package cn.edu.nju.sj12.model.helpers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

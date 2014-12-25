@@ -1,4 +1,4 @@
-package cn.edu.nju.sj12.logic.user;
+package cn.edu.nju.sj12.model.user;
 
 import cn.edu.nju.sj12.vo.UserVO;
 

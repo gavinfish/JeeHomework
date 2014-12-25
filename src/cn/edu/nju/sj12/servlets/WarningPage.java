@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import cn.edu.nju.sj12.logic.user.UserRegulationInterface;
-import cn.edu.nju.sj12.logic.user.UserRegulationXmlImp;
+import cn.edu.nju.sj12.model.user.UserRegulationInterface;
+import cn.edu.nju.sj12.model.user.UserRegulationXmlImp;
 import cn.edu.nju.sj12.vo.UserVO;
 
 

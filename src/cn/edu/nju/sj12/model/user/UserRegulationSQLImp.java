@@ -1,11 +1,11 @@
-package cn.edu.nju.sj12.logic.user;
+package cn.edu.nju.sj12.model.user;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import cn.edu.nju.sj12.enums.Gender;
-import cn.edu.nju.sj12.helpers.MySQLHelper;
+import cn.edu.nju.sj12.model.helpers.MySQLHelper;
 import cn.edu.nju.sj12.vo.UserVO;
 
 public class UserRegulationSQLImp implements UserRegulationInterface{
