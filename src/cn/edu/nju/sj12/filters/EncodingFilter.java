@@ -26,6 +26,7 @@ public class EncodingFilter implements Filter{
 		// TODO Auto-generated method stub
 		HttpServletRequest request = (HttpServletRequest)req;
 		request.setCharacterEncoding(targetEncoding);
+		System.out.println("encodingFilter");
 		chain.doFilter(req, resp);
 	}
 

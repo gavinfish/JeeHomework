@@ -10,7 +10,7 @@ import cn.edu.nju.sj12.dao.IUserDao;
  * Code Every Day
  */
 
-abstract class DaoFactory {
+public abstract class DaoFactory {
 	public static DaoFactory getInstance(String classname){
 		DaoFactory daoFactory = null;
 		try {
@@ -28,6 +28,6 @@ abstract class DaoFactory {
 		return daoFactory;
 	}
 	
-	abstract IUserDao getUserDao();
-	abstract IScoreDao getScoreDao();
+	public abstract IUserDao getUserDao();
+	public abstract IScoreDao getScoreDao();
 }

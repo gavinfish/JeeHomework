@@ -15,13 +15,13 @@ import cn.edu.nju.sj12.dao.daoImpl.MySQLUserDaoImpl;
 public class MySQLDaoFactory extends DaoFactory{
 
 	@Override
-	IUserDao getUserDao() {
+	public IUserDao getUserDao() {
 		// TODO Auto-generated method stub
 		return new MySQLUserDaoImpl();
 	}
 
 	@Override
-	IScoreDao getScoreDao() {
+	public IScoreDao getScoreDao() {
 		// TODO Auto-generated method stub
 		return new MySQLScoreDaoImpl();
 	}

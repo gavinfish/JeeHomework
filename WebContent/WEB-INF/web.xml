@@ -36,7 +36,7 @@
   </filter>
   <filter-mapping>
   	<filter-name>LoginFilter</filter-name>
-  	<url-pattern>/target.jsp</url-pattern>
+  	<url-pattern>*.jsp</url-pattern>
   </filter-mapping>
   
   <!-- counter listener -->

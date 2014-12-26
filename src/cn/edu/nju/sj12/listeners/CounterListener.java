@@ -1,6 +1,8 @@
 package cn.edu.nju.sj12.listeners;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 
 import javax.servlet.ServletContext;
@@ -38,20 +40,32 @@ public class CounterListener implements ServletContextListener,
 	}
 
 	@Override
-	public void attributeReplaced(ServletContextAttributeEvent arg0) {
+	public void attributeReplaced(ServletContextAttributeEvent scae) {
 		// TODO Auto-generated method stub
-
+		System.out.println("ServletContextattribute replaced");
+		writeCounter(scae);
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
-
+		System.out.println("Application shut down");
 	}
 
 	@Override
-	public void contextInitialized(ServletContextEvent arg0) {
+	public void contextInitialized(ServletContextEvent cse) {
 		// TODO Auto-generated method stub
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(counterFilePath));
+			counter = Integer.parseInt( reader.readLine() );
+			reader.close();
+			System.out.println("Reading" + counter);}
+			catch (Exception e) {
+			System.out.println(e.toString());
+			}
+			ServletContext servletContext= cse.getServletContext();
+			servletContext.setAttribute("pageCounter", Integer.toString(counter));
+			System.out.println("Application initialized");
 
 	}
 
@@ -69,5 +83,7 @@ public class CounterListener implements ServletContextListener,
 			System.out.println(e.toString());
 		}
 	}
+	
+	
 
 }
