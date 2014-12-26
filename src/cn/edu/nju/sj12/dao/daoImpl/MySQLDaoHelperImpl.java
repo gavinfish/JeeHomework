@@ -1,15 +1,25 @@
-package cn.edu.nju.sj12.model.helpers;
+package cn.edu.nju.sj12.dao.daoImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class MySQLHelper {
+import cn.edu.nju.sj12.dao.IDaoHelper;
 
-	public Connection connection;
+/**
+ * 
+ * @author ShenJie
+ *
+ * Code Every Day
+ */
 
-	// 连接数据库
-	public MySQLHelper() {
+public class MySQLDaoHelperImpl implements IDaoHelper{
+	private Connection connection;
+	private Statement statement;
+	
+	public MySQLDaoHelperImpl(){
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -21,6 +31,7 @@ public class MySQLHelper {
 
 			// 加载驱动程序以连接数据库
 			connection = DriverManager.getConnection(url, username, password);
+			statement = connection.createStatement();
 		}
 
 		// 捕获加载驱动程序异常
@@ -35,6 +46,19 @@ public class MySQLHelper {
 			sqlex.printStackTrace();
 			System.exit(1); // 结束程序
 		}
+	}
+	
+	@Override
+	public ResultSet getSQLResult(String sql) {
+		// TODO Auto-generated method stub
+		ResultSet resultSet = null;
+		try {
+			resultSet = statement.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultSet;
 	}
 
 }

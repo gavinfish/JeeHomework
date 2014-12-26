@@ -1,8 +1,15 @@
-package cn.edu.nju.sj12.model.user;
+package cn.edu.nju.sj12.dao;
 
 import cn.edu.nju.sj12.beans.UserBean;
 
-public interface UserRegulationInterface {
+/**
+ * 
+ * @author ShenJie
+ *
+ * Code Every Day
+ */
+
+public interface IUserDao {
 	public void addUser(UserBean user);
 	public void deleteUser(String id);
 	public UserBean getUser(String id);

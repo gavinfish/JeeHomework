@@ -1,15 +1,28 @@
-package cn.edu.nju.sj12.vo;
+package cn.edu.nju.sj12.beans;
+
+import java.io.Serializable;
 
 import cn.edu.nju.sj12.enums.Gender;
 
-public class UserVO {
+/**
+ * 用户信息的Bean
+ * @author ShenJie
+ *
+ * Code Every Day
+ */
+
+public class UserBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String password;
 	private String name;
 	private int age;
 	private Gender gender;
 	
-	public UserVO(String id){
+	public UserBean(String id){
 		this.id = id;
 	}
 	

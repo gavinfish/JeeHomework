@@ -5,10 +5,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import cn.edu.nju.sj12.beans.UserBean;
 import cn.edu.nju.sj12.enums.Gender;
 import cn.edu.nju.sj12.model.exceptions.FileNotOpenException;
 import cn.edu.nju.sj12.model.helpers.XmlHelpr;
-import cn.edu.nju.sj12.vo.UserVO;
 
 public class UserRegulationXmlImp implements UserRegulationInterface{
 	private XmlHelpr helper;
@@ -20,7 +20,7 @@ public class UserRegulationXmlImp implements UserRegulationInterface{
 	}
 	
 	@Override
-	public void addUser(UserVO user) {
+	public void addUser(UserBean user) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -32,8 +32,8 @@ public class UserRegulationXmlImp implements UserRegulationInterface{
 	}
 
 	@Override
-	public UserVO getUser(String id) {
-		UserVO user = null;
+	public UserBean getUser(String id) {
+		UserBean user = null;
 		// TODO Auto-generated method stub
 		try {
 			String xpath = "/users/user[@id="+id+"]";
@@ -46,7 +46,7 @@ public class UserRegulationXmlImp implements UserRegulationInterface{
 			String password = childList.item(3).getTextContent();
 			int age = Integer.parseInt(childList.item(5).getTextContent());
 			Gender gender = (Gender)Enum.valueOf(Gender.class, childList.item(7).getTextContent());
-			user = new UserVO(id);
+			user = new UserBean(id);
 			user.setPassword(password);
 			user.setAge(age);
 			user.setGender(gender);
@@ -59,7 +59,7 @@ public class UserRegulationXmlImp implements UserRegulationInterface{
 	}
 
 	@Override
-	public void updateUser(UserVO user) {
+	public void updateUser(UserBean user) {
 		// TODO Auto-generated method stub
 		
 	}

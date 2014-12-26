@@ -4,9 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import cn.edu.nju.sj12.beans.UserBean;
 import cn.edu.nju.sj12.enums.Gender;
 import cn.edu.nju.sj12.model.helpers.MySQLHelper;
-import cn.edu.nju.sj12.vo.UserVO;
 
 public class UserRegulationSQLImp implements UserRegulationInterface{
 	private MySQLHelper mySQLHelper;
@@ -25,7 +25,7 @@ public class UserRegulationSQLImp implements UserRegulationInterface{
 	}
 	
 	@Override
-	public void addUser(UserVO user) {
+	public void addUser(UserBean user) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -37,9 +37,9 @@ public class UserRegulationSQLImp implements UserRegulationInterface{
 	}
 
 	@Override
-	public UserVO getUser(String id) {
+	public UserBean getUser(String id) {
 		// TODO Auto-generated method stub
-		UserVO userVO = null;
+		UserBean userVO = null;
 		String sqlSentence = "select * from "+tableName+" where id='"+id+"'";
 		try {
 			resultSet = statement.executeQuery(sqlSentence);
@@ -48,7 +48,7 @@ public class UserRegulationSQLImp implements UserRegulationInterface{
 				String password = resultSet.getString(3);
 				int age = resultSet.getInt(4);
 				Gender gender = (Gender)Enum.valueOf(Gender.class, resultSet.getString(5));
-				userVO = new UserVO(id);
+				userVO = new UserBean(id);
 				userVO.setName(name);
 				userVO.setPassword(password);
 				userVO.setAge(age);
@@ -63,7 +63,7 @@ public class UserRegulationSQLImp implements UserRegulationInterface{
 	}
 
 	@Override
-	public void updateUser(UserVO user) {
+	public void updateUser(UserBean user) {
 		// TODO Auto-generated method stub
 		
 	}

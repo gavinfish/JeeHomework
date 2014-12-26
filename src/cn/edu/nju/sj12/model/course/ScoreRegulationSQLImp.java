@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import cn.edu.nju.sj12.model.helpers.MySQLHelper;
-import cn.edu.nju.sj12.vo.TranscriptVO;
 
 public class ScoreRegulationSQLImp implements ScoreRegulationInterface{
 	private MySQLHelper mySQLHelper;
@@ -48,11 +47,7 @@ public class ScoreRegulationSQLImp implements ScoreRegulationInterface{
 		return score;
 	}
 
-	@Override
-	public TranscriptVO getScores(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	
 	public static void main(String[] args){
