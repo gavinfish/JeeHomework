@@ -21,7 +21,14 @@
 	<p class="auto-style1">恭喜！你的成绩为
 	<jsp:getProperty property="score" name="myScore"/>
 	分！</p>
-
+	<p class="auto-style1">&nbsp;</p>
+	<%
+		ServletContext context = getServletContext();
+		int totalCounter = (Integer)context.getAttribute("totalCounter");
+		int onlineCounter = (Integer)context.getAttribute("onlineCounter");
+		int visitorCounter = (Integer)context.getAttribute("visitorCounter");
+	%>
+	<p class="auto-style1">当前在线有<%=totalCounter %>人在线，<%=onlineCounter %>人已登录，<%=visitorCounter %>人为游客</p>
 </body>
 
 </html>

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class LoginFilter implements Filter {
-	String LOGIN_PAGE = "/Homework/JSPs/login.jsp";
+	String LOGIN_PAGE = "/Homework/user/login.jsp";
 	protected FilterConfig filterConfig;
 
 	@Override

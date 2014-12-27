@@ -2,6 +2,7 @@ package cn.edu.nju.sj12.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ public class HandlerServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final String LOGIN_PAGE = "/user/login.jsp";
 	private final String FORMAL_PAGE = "/JSPs/FormalPage.jsp";
 	private final String WRONG_PAGE = "/JSPs/WrongPage.jsp";
 	private final String WARNING_PAGE = "/JSPs/WarningPage.jsp";
@@ -50,7 +52,19 @@ public class HandlerServlet extends HttpServlet{
 			return;
 		}
 		else{
+			Integer count = (Integer)session.getAttribute("myCount");
+			Integer logNumber = (Integer)session.getAttribute("logNumber");
+			System.out.println("servlet.session.count:"+count);
+			System.out.println("servlet.session.logNumber:"+logNumber);
+			if((logNumber!=0)&&(!count.equals(logNumber))){
+				//重复登录
+				System.out.println("该账号已经登录");
+				req.getRequestDispatcher(LOGIN_PAGE).forward(req, resp);
+				return;
+			}
 			session.setAttribute("isLog", true);
+			session.setAttribute("logNumber", session.getAttribute("myCount"));
+			updateOnlineCounter();
 			//未对此有要求，暂作mock
 			int tempCourseId = 1;
 			int score = getScore(id, tempCourseId);
@@ -86,5 +100,15 @@ public class HandlerServlet extends HttpServlet{
 		int score = 0;
 		score = DaoFactory.getInstance(DaoConfig.MYSQL).getScoreDao().getScore(id, courseId);
 		return score;
+	}
+	
+	private void updateOnlineCounter(){
+		ServletContext context = getServletContext();
+		int onlineCounter = (int)context.getAttribute("onlineCounter");
+		int visitorCounter = (int)context.getAttribute("visitorCounter");
+		onlineCounter++;
+		visitorCounter--;
+		context.setAttribute("onlineCounter", onlineCounter);
+		context.setAttribute("visitorCounter", visitorCounter);
 	}
 }
