@@ -56,13 +56,13 @@ public class HandlerServlet extends HttpServlet{
 			Integer logNumber = (Integer)session.getAttribute("logNumber");
 			System.out.println("servlet.session.count:"+count);
 			System.out.println("servlet.session.logNumber:"+logNumber);
-			if((logNumber!=0)&&(!count.equals(logNumber))){
+			if((null!=logNumber)&&(!count.equals(logNumber))){
 				//重复登录
 				System.out.println("该账号已经登录");
 				req.getRequestDispatcher(LOGIN_PAGE).forward(req, resp);
 				return;
 			}
-			session.setAttribute("isLog", true);
+			session.setAttribute("isLog", "true");
 			session.setAttribute("logNumber", session.getAttribute("myCount"));
 			updateOnlineCounter();
 			//未对此有要求，暂作mock

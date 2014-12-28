@@ -44,6 +44,8 @@ public class MySQLScoreDaoImpl implements IScoreDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			daoHelper.disConnect();
 		}
 		return score;
 	}

@@ -21,7 +21,7 @@
 		visitorCounter++;
 		context.setAttribute("totalCounter", totalCounter);
 		context.setAttribute("visitorCounter", visitorCounter);
-
+		System.out.println("fjeoajfeawf "+totalCounter);
 	} else {
 		
 	}

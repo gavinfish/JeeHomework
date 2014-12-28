@@ -56,6 +56,8 @@ public class MySQLUserDaoImpl implements IUserDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			daoHelper.disConnect();
 		}
 		return user;
 	}

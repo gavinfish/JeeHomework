@@ -11,4 +11,5 @@ import java.sql.ResultSet;
 
 public interface IDaoHelper {
 	public ResultSet getSQLResult(String sql);
+	public void disConnect();
 }

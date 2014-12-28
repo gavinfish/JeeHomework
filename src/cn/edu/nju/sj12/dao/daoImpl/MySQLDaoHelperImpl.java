@@ -1,10 +1,17 @@
 package cn.edu.nju.sj12.dao.daoImpl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+
+import javax.sql.DataSource;
 
 import cn.edu.nju.sj12.dao.IDaoHelper;
 
@@ -18,40 +25,32 @@ import cn.edu.nju.sj12.dao.IDaoHelper;
 public class MySQLDaoHelperImpl implements IDaoHelper{
 	private Connection connection;
 	private Statement statement;
+	private ResultSet resultSet;
 	
 	public MySQLDaoHelperImpl(){
-
+		Properties properties = new Properties();
+		properties.put(javax.naming.Context.PROVIDER_URL, "jnp:///");
+		properties.put(javax.naming.Context.INITIAL_CONTEXT_FACTORY,
+				"org.apache.naming.java.javaURLContextFactory");
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// 要使用的数据库名称以及数据库的账号密码
-			String url = "jdbc:mysql://localhost/" + "jee_homework";
-			String username = "root";
-			String password = "123456";
-
-			// 加载驱动程序以连接数据库
-			connection = DriverManager.getConnection(url, username, password);
+			Context context = new InitialContext(properties);
+			DataSource dataSource = (DataSource)context.lookup("java:comp/env/jdbc/jee_homework");
+			connection = dataSource.getConnection();
 			statement = connection.createStatement();
-		}
-
-		// 捕获加载驱动程序异常
-		catch (ClassNotFoundException cnfex) {
-			System.err.println("装载 JDBC/ODBC 驱动程序失败。");
-			cnfex.printStackTrace();
-			System.exit(1); // 结束程序
-		}
-		// 捕获连接数据库异常
-		catch (SQLException sqlex) {
-			System.err.println("无法连接数据库");
-			sqlex.printStackTrace();
-			System.exit(1); // 结束程序
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
 		}
 	}
 	
 	@Override
 	public ResultSet getSQLResult(String sql) {
 		// TODO Auto-generated method stub
-		ResultSet resultSet = null;
 		try {
 			resultSet = statement.executeQuery(sql);
 		} catch (SQLException e) {
@@ -59,6 +58,35 @@ public class MySQLDaoHelperImpl implements IDaoHelper{
 			e.printStackTrace();
 		}
 		return resultSet;
+	}
+
+	@Override
+	public void disConnect() {
+		// TODO Auto-generated method stub
+		if(resultSet!=null){
+			try {
+				resultSet.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(statement!=null){
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(connection!=null){
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

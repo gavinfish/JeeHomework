@@ -6,16 +6,21 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextAttributeEvent;
 import javax.servlet.ServletContextAttributeListener;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
 
 public class CounterListener implements ServletContextListener,
-		ServletContextAttributeListener {
+		ServletContextAttributeListener,HttpSessionListener {
 	int totalCounter;
 	int onlineCounter;
 	int visitorCounter;
@@ -107,6 +112,33 @@ public class CounterListener implements ServletContextListener,
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
+	}
+
+	@Override
+	public void sessionCreated(HttpSessionEvent arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("session created");
+	}
+
+	@Override
+	public void sessionDestroyed(HttpSessionEvent arg0) {
+		// TODO Auto-generated method stub
+		HttpSession session = arg0.getSession();
+		String isLog = (String)session.getAttribute("isLog");
+		ServletContext servletContext = session.getServletContext();
+		totalCounter = (int)servletContext.getAttribute("totalCounter");
+		onlineCounter = (int)servletContext.getAttribute("onlineCounter");
+		visitorCounter = (int)servletContext.getAttribute("visitorCounter"); 
+		if ((isLog != null) && ((isLog.equals("true")) || (isLog == "true"))) {
+			onlineCounter--;
+			servletContext.setAttribute("onlineCounter", onlineCounter);
+		} else {
+			visitorCounter--;
+			servletContext.setAttribute("visitorCounter", visitorCounter);
+		}
+		totalCounter--;
+		servletContext.setAttribute("totalCounter", totalCounter);
+		System.out.println("test: "+totalCounter+" "+onlineCounter+" "+visitorCounter);
 	}
 
 }

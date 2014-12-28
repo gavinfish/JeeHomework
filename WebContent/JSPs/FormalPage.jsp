@@ -21,7 +21,7 @@
 	<p class="auto-style1">恭喜！你的成绩为
 	<jsp:getProperty property="score" name="myScore"/>
 	分！</p>
-	<p class="auto-style1">&nbsp;</p>
+	<p class="auto-style1"><a href="/Homework/JSPs/LogOut.jsp">注销</a></p>
 	<%
 		ServletContext context = getServletContext();
 		int totalCounter = (Integer)context.getAttribute("totalCounter");
