@@ -1,6 +1,6 @@
 package cn.edu.nju.sj12.dao;
 
-import cn.edu.nju.sj12.beans.UserBean;
+import cn.edu.nju.sj12.model.User;
 
 /**
  * 
@@ -10,8 +10,8 @@ import cn.edu.nju.sj12.beans.UserBean;
  */
 
 public interface IUserDao {
-	public void addUser(UserBean user);
+	public void addUser(User user);
 	public void deleteUser(String id);
-	public UserBean getUser(String id);
-	public void updateUser(UserBean user);
+	public User getUser(String id);
+	public void updateUser(User user);
 }

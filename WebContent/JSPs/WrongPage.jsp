@@ -26,7 +26,7 @@
 		ServletContext context = getServletContext();
 		int totalCounter = (Integer)context.getAttribute("totalCounter");
 		int onlineCounter = (Integer)context.getAttribute("onlineCounter");
-		int visitorCounter = (Integer)context.getAttribute("visitorCounter");
+		int visitorCounter = totalCounter-onlineCounter;
 	%>
 	<p class="auto-style1">当前在线有<%=totalCounter %>人在线，<%=onlineCounter %>人已登录，<%=visitorCounter %>人为游客</p>
 </body>

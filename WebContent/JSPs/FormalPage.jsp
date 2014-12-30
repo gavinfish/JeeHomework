@@ -13,22 +13,29 @@
 </head>
 
 <body>
-	<jsp:useBean id="myScore" type="cn.edu.nju.sj12.beans.ScoreBean" scope="request"></jsp:useBean>
+	<jsp:useBean id="myScore" type="cn.edu.nju.sj12.model.Score"
+		scope="request"></jsp:useBean>
 	<h1 class="auto-style1">
 		<strong>标准界面</strong>
 	</h1>
 	<p class="auto-style1">&nbsp;</p>
-	<p class="auto-style1">恭喜！你的成绩为
-	<jsp:getProperty property="score" name="myScore"/>
-	分！</p>
-	<p class="auto-style1"><a href="/Homework/JSPs/LogOut.jsp">注销</a></p>
+	<p class="auto-style1">
+		恭喜！你的成绩为
+		<jsp:getProperty property="score" name="myScore" />
+		分！
+	</p>
+	<p class="auto-style1">
+		<a href="/Homework/JSPs/LogOut.jsp">注销</a>
+	</p>
 	<%
 		ServletContext context = getServletContext();
-		int totalCounter = (Integer)context.getAttribute("totalCounter");
-		int onlineCounter = (Integer)context.getAttribute("onlineCounter");
-		int visitorCounter = (Integer)context.getAttribute("visitorCounter");
+		int totalCounter = (Integer) context.getAttribute("totalCounter");
+		int onlineCounter = (Integer) context.getAttribute("onlineCounter");
+		int visitorCounter = totalCounter - onlineCounter;
 	%>
-	<p class="auto-style1">当前在线有<%=totalCounter %>人在线，<%=onlineCounter %>人已登录，<%=visitorCounter %>人为游客</p>
+	<p class="auto-style1">
+		当前在线有<%=totalCounter%>人在线，<%=onlineCounter%>人已登录，<%=visitorCounter%>人为游客
+	</p>
 </body>
 
 </html>

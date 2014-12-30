@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 public class EncodingFilter implements Filter{
-	private String targetEncoding = "utf8";
+	private String targetEncoding = "utf-8";
 	protected FilterConfig filterConfig;
 	
 	@Override

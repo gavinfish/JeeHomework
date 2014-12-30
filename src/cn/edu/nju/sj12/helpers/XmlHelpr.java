@@ -1,4 +1,4 @@
-package cn.edu.nju.sj12.model.helpers;
+package cn.edu.nju.sj12.helpers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,7 +22,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import cn.edu.nju.sj12.model.exceptions.FileNotOpenException;
+import cn.edu.nju.sj12.exceptions.FileNotOpenException;
 
 public class XmlHelpr{
 	private Document doc;

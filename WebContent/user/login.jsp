@@ -5,26 +5,7 @@
 	pageEncoding="utf8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-	session = request.getSession(false);
 	ServletContext context = getServletContext();
-	System.out.println("login.session.count:"+session.getAttribute("myCount"));
-	//每个首次打开的系统的客户端都将分配到一个标识count
-	if (session.getAttribute("myCount") == null) {
-		session.setAttribute("myCount", context.getAttribute("counter"));
-		context.setAttribute("counter",
-				(Integer) context.getAttribute("counter") + 1);
-		int totalCounter = (Integer) context
-				.getAttribute("totalCounter");
-		int visitorCounter = (Integer) context
-				.getAttribute("visitorCounter");
-		totalCounter++;
-		visitorCounter++;
-		context.setAttribute("totalCounter", totalCounter);
-		context.setAttribute("visitorCounter", visitorCounter);
-		System.out.println("fjeoajfeawf "+totalCounter);
-	} else {
-		
-	}
 %>
 <html>
 
@@ -57,8 +38,7 @@
 	<%
 		int totalCounter = (Integer) context.getAttribute("totalCounter");
 		int onlineCounter = (Integer) context.getAttribute("onlineCounter");
-		int visitorCounter = (Integer) context
-				.getAttribute("visitorCounter");
+		int visitorCounter = totalCounter-onlineCounter;
 	%>
 	<p class="auto-style1">
 		当前在线有<%=totalCounter%>人在线，<%=onlineCounter%>人已登录，<%=visitorCounter%>人为游客

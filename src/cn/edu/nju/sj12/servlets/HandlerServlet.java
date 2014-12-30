@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import cn.edu.nju.sj12.beans.ScoreBean;
-import cn.edu.nju.sj12.beans.UserBean;
 import cn.edu.nju.sj12.factory.DaoConfig;
 import cn.edu.nju.sj12.factory.DaoFactory;
+import cn.edu.nju.sj12.model.Score;
+import cn.edu.nju.sj12.model.User;
 
 /**
  * Controller
@@ -52,23 +52,18 @@ public class HandlerServlet extends HttpServlet{
 			return;
 		}
 		else{
-			Integer count = (Integer)session.getAttribute("myCount");
-			Integer logNumber = (Integer)session.getAttribute("logNumber");
-			System.out.println("servlet.session.count:"+count);
-			System.out.println("servlet.session.logNumber:"+logNumber);
-			if((null!=logNumber)&&(!count.equals(logNumber))){
-				//重复登录
-				System.out.println("该账号已经登录");
-				req.getRequestDispatcher(LOGIN_PAGE).forward(req, resp);
-				return;
-			}
+//			if(false){
+//				//重复登录
+//				System.out.println("该账号已经登录");
+//				req.getRequestDispatcher(LOGIN_PAGE).forward(req, resp);
+//				return;
+//			}
 			session.setAttribute("isLog", "true");
-			session.setAttribute("logNumber", session.getAttribute("myCount"));
 			updateOnlineCounter();
 			//未对此有要求，暂作mock
 			int tempCourseId = 1;
 			int score = getScore(id, tempCourseId);
-			ScoreBean myScoreBean = new ScoreBean();
+			Score myScoreBean = new Score();
 			myScoreBean.setScore(score);
 			req.setAttribute("myScore", myScoreBean);
 			if(score<60){
@@ -86,7 +81,10 @@ public class HandlerServlet extends HttpServlet{
 		if(id==null||id==""||password==null||password==""){
 			return false;
 		}
-		UserBean user = DaoFactory.getInstance(DaoConfig.MYSQL).getUserDao().getUser(id);
+		User user = DaoFactory.getInstance(DaoConfig.MYSQL).getUserDao().getUser(id);
+		if(user==null){
+			return false;
+		}
 		String truePassword = user.getPassword();
 		if(password.equals(truePassword)){
 			return true;
@@ -105,10 +103,7 @@ public class HandlerServlet extends HttpServlet{
 	private void updateOnlineCounter(){
 		ServletContext context = getServletContext();
 		int onlineCounter = (int)context.getAttribute("onlineCounter");
-		int visitorCounter = (int)context.getAttribute("visitorCounter");
 		onlineCounter++;
-		visitorCounter--;
 		context.setAttribute("onlineCounter", onlineCounter);
-		context.setAttribute("visitorCounter", visitorCounter);
 	}
 }

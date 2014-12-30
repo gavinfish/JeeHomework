@@ -8,17 +8,13 @@
 </head>
 <body>
 	<%
-		session.invalidate();//注销
-		//ServletContext context = getServletContext();
-		//int onlineCounter = (Integer) context
-		//		.getAttribute("onlineCounter");
-		//int visitorCounter = (Integer) context
-		//		.getAttribute("visitorCounter");
-		//onlineCounter--;
-		//visitorCounter++;
-		//context.setAttribute("onlineCounter", onlineCounter);
-		//context.setAttribute("visitorCounter", visitorCounter);
-		response.setHeader("refresh", "2;url=/Homework/user/login.jsp");//定时跳转
+		//response.setHeader("refresh", "url=/Homework/user/login.jsp");//定时跳转
+		session.removeAttribute("isLog");
+		ServletContext context = getServletContext();
+		int onlineCounter = (Integer) context.getAttribute("onlineCounter");
+		onlineCounter--;
+		context.setAttribute("onlineCounter", onlineCounter);
+		request.getRequestDispatcher("/user/login.jsp").forward(request, response);
 	%>
 </body>
 </html>
